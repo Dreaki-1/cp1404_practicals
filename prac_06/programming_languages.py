@@ -1,3 +1,11 @@
+"""
+Prac 06
+PROGRAMMING LANGUAGES
+Time taken to complete : 15 minutes
+
+"""
+
+
 class ProgrammingLanguages:
     """Divide programming languages into parts by their nane, typing method, reflection and year of creation"""
 
@@ -15,4 +23,3 @@ class ProgrammingLanguages:
     def __str__(self):
         """Returns a string representation of the ProgrammingLanguages class"""
         return f"{self.name}, {self.typing} Typing, Reflection={self.reflection}, First appeared in {self.year}"
-

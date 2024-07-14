@@ -2,7 +2,7 @@
 Prac 06
 Guitar Test
 
-
+Time taken : 10 minutes
 """
 
 from guitar import Guitar

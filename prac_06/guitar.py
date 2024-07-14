@@ -2,7 +2,7 @@
 Prac 06 - guitar
 
 class Guitar
-Time Taken: 30 minutes
+Time Taken: 10 minutes
 """
 CURRENT_YEAR = 2024
 VINTAGE_AGE = 50

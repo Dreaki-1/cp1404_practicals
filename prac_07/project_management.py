@@ -1,7 +1,7 @@
 """
 Prac 07 - Project Management
 Main Function
-Estimated Time: 4.5 hours
+Estimated Time: 5 hours
 """
 
 import datetime
@@ -89,7 +89,7 @@ def save_projects(filename, projects):
 def filter_projects_by_date(projects, date):
     """
     Filters and displays projects that start after a given date, sorted by start date.
-     Date to filter projects by in 'dd/mm/yyyy' format
+    Date to filter projects by in 'dd/mm/yyyy' format
     """
     filtered = sorted([p for p in projects if p.starts_after(date)], key=Project.get_start_date)
     for project in filtered:

@@ -3,41 +3,46 @@ Prac 07 - Project Management
 Main Function
 
 """
-import csv
+
 import datetime
 from project import Project
 
 FILENAME = "projects.txt"
-MENU = ("- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter projects\n- (A)dd new projects\n- (U)pdate projects\n- ("
-        "Q)uit")
-
+MENU = (
+    "- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter projects\n- (A)dd new projects\n- (U)pdate projects\n- ("
+    "Q)uit")
 
 def main():
-    print("Welcome to Pythonic Project Management")
     projects = load_projects(FILENAME)
-    print(MENU)
-    print(f"Loaded {len(projects) - 1} projects from {FILENAME}")
-    choice = input(">>> ").upper()
-    while choice != "Q"
-        if choice == "L":
-            load_projects(projects)
-        elif choice == "S":
-            pass
-        elif choice == "D":
+    print("Welcome to Pythonic Project Management")
+    print(f"Loaded {len(projects)} projects from {FILENAME}")
+    choice = input(MENU).strip().lower()
+    while choice != 'q':
+        if choice == 'l':
+            filename = input("Filename to load from: ")
+            projects = load_projects(filename)
+        elif choice == 's':
+            filename = input("Filename to save to: ")
+            # save_projects(filename, projects)
+        elif choice == 'd':
             display_projects(projects)
-        elif choice == "F":
-            pass
-        elif choice == "A":
-            pass
-        elif choice == "U":
-            pass
-        elif choice == "Q":
-            pass
-        print("invalid choice")
-        print(MENU)
-        choice = input(">>> ").upper()
+        elif choice == 'f':
+            date = input("Show projects that start after date (dd/mm/yyyy): ")
+            # filter_projects_by_date(projects, date)
+        elif choice == 'a':
+        # add_new_project(projects)
+        elif choice == 'u':
+        # update_project(projects)
+        else:
+            print("Invalid choice")
 
+        choice = input(MENU).strip().lower()
 
+    save = input(f"Would you like to save to {FILENAME}? (y/n): ").strip().lower()
+    if save == 'y':
+    # save_projects(FILENAME, projects)
+
+    print("Thank you for using custom-built project management software.")
 
 
 def load_projects(filename):
@@ -54,13 +59,19 @@ def load_projects(filename):
 
 
 def display_projects(projects):
-    complete_projects = [project for project in projects.completion_percentage if projects.completion_percentage == 100]
-    incomplete_projects = [project for project in projects.completion_percentage if project.completion_percentage < 100]
-    print("Completed projects:")
-    for project in complete_projects:
-        print(project)
-    print("\nIncomplete projects:")
-    for project in incomplete_projects:
-        print(project)
+    """
+    Displays incomplete and completed projects sorted by priority.
+    """
+    incomplete = sorted([project for project in projects if not project.is_complete()])
+    complete = sorted([project for project in projects if project.is_complete()])
+
+    print("Incomplete projects: ")
+    for project in incomplete:
+        print(f"  {project}")
+
+    print("Completed projects: ")
+    for project in complete:
+        print(f"  {project}")
+
 
 main()

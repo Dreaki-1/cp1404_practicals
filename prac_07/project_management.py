@@ -5,22 +5,26 @@ Main Function
 """
 import csv
 import datetime
+from project import Project
 
 FILENAME = "projects.txt"
-MENU = "- (L)oad projects\n- (S)ave Projects\n"
+MENU = ("- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter projects\n- (A)dd new projects\n- (U)pdate projects\n- ("
+        "Q)uit")
+
 
 def main():
     print("Welcome to Pythonic Project Management")
-    data = load_projects(FILENAME)
-    print(f"Loaded {len(data)-1} projects from {FILENAME}")
-    choice = input(">>> ").lower()
-    while choice != True:
+    projects = load_projects(FILENAME)
+    print(MENU)
+    print(f"Loaded {len(projects) - 1} projects from {FILENAME}")
+    choice = input(">>> ").upper()
+    while choice != "Q"
         if choice == "L":
-            load_projects(data)
+            load_projects(projects)
         elif choice == "S":
             pass
         elif choice == "D":
-            display_projects()
+            display_projects(projects)
         elif choice == "F":
             pass
         elif choice == "A":
@@ -30,26 +34,33 @@ def main():
         elif choice == "Q":
             pass
         print("invalid choice")
-        choice = input(">>> ").lower()
+        print(MENU)
+        choice = input(">>> ").upper()
 
-# quit_program()
 
 
-def load_projects(file):
+
+def load_projects(filename):
+    """
+    Loads projects from a file.
+    """
     projects = []
-    with open(file) as infile:
-        reader = csv.reader(infile)
-        for row in reader:
-            projects.append(row)
+    with open(filename, 'r') as file:
+        lines = file.readlines()[1:]  # Skip header
+        for line in lines:
+            parts = line.strip().split('\t')
+            projects.append(Project(*parts))
     return projects
 
-def display_projects():
-    projects = []
-    projects_completed = []
-    for project in projects if project[4] = 100:
-        projects.append(project)
 
-
-
+def display_projects(projects):
+    complete_projects = [project for project in projects.completion_percentage if projects.completion_percentage == 100]
+    incomplete_projects = [project for project in projects.completion_percentage if project.completion_percentage < 100]
+    print("Completed projects:")
+    for project in complete_projects:
+        print(project)
+    print("\nIncomplete projects:")
+    for project in incomplete_projects:
+        print(project)
 
 main()

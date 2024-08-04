@@ -8,6 +8,7 @@ class Band:
         self.name = name
         self.members = []
 
+
     def __str__(self):
         """String representation of Band object"""
         members = ', '.join(f"{member.name} ({member})" for member in self.members)
@@ -19,6 +20,8 @@ class Band:
         for member in self.members:
             output.append(member.play())
         return "\n".join(output)
+
+
 
     def add(self, musician):
         """Add a musician to the band"""
